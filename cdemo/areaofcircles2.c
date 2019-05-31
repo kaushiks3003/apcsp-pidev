@@ -1,27 +1,37 @@
 #include <stdio.h>
-
-float areaofcircle(float radius)
+#include <math.h>
+float areaofcircle(float r)
 {
-  float area;
-  area = 3.14 * radius * radius;
+  float area = M_PI*r*r;
   return area;
-} 
-
-int main()
+}
+float areaofcircle(float radius);
+int main(int argc, char* argv[])
 {
-  float low;
-  float up;
+  int SIZE = 200;
+  char input[SIZE];
+  float lowerradius;
+  float higherradius;
 
-  printf("Enter the lower end of the range\n");
-  scanf("%f", &low);
-  printf("Enter the uper end of the range\n");
-  scanf("%f", &up);
+while (1)
+{
+  printf("Enter the lower radius\n");
+  fgets(input, SIZE, stdin);
+  if(sscanf(input, "%f", &lowerradius)==1) break;
+  printf("not a valid value\n");
+}
+while (1)
+{
+  printf("enter the highest radius\n");
+  fgets(input, SIZE, stdin);
+  if (sscanf(input, "%f", &higherradius) ==1) break;
+  printf("not a valid number\n");
+}
+for (float i = lowerradius; i <= higherradius; i++)
+{
+  printf("the radius is %f...", i);
+  printf("and its area is %f\n",areaofcircle(i));
+}
 
-    for (float i = low; i < up; i++)
-  {
-    float radius = i;
-    float area = areaofcircle(radius);
-     printf("Area of a circle = %f\n", area);
-  }
-  return 0;
-} 
+
+}
